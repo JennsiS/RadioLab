@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+ * @author Jennifer Sandoval, Esteban del Valle, Andrea Paniagua
+ * @Carne 18962,
+ * @date 15/01/19
+ * @name PrincipalRadio.java
+ * */
 package radiolab;
 import java.util.Scanner;
 
-/**
- *
- * @author 
- */
 public class PrincipalRadio {
     private static Scanner teclado;
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args){
         Scanner scan = new Scanner (System.in);
         Radio radio = (Radio) new RadioImp();
