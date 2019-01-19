@@ -1,11 +1,10 @@
 /**
  * @author Jennifer Sandoval, Esteban del Valle, Andrea Paniagua
- * @Carne 18962,
+ * @Carne 18962,18221, 18733
  * @date 15/01/19
  * @name Radio.java
  *<p> Interfaz que contiene todos los metodos necesarios para el funcionamiento de una radio </p>
  * */
-package radiolab;
 
 public interface Radio {
     
@@ -39,7 +38,7 @@ public interface Radio {
     /**
      * Permite guardar una estacion en un boton
      */
-    public void saveStation();
+    public void saveStation(int numButton);
 
     /**
      *

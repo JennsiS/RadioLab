@@ -1,59 +1,37 @@
 /**
  * @author Jennifer Sandoval, Esteban del Valle, Andrea Paniagua
- * @Carne 18962,
+ * @Carne 18962,18221,18733
  * @date 15/01/19
  * @name PrincipalRadio.java
+ * <p> esta clase implementa los metodos del radio original para ser utilizados</p>
  * */
-package radiolab;
 
 public class RadioImp implements Radio {
-	
-	private boolean state;
-	private boolean frequency;
-	private double station;
-	private double[] botones;
-	
-	public RadioImp() {
-		state = false;
-		frequency = false;
-		station = 0;
-		botones = new double[12]
+    private boolean state;
+    private boolean frequency;
+    private double station;
+    private double[] botones;
+    private boolean up;
+    
+    public RadioImp() {
+    up=true;
+	state = false;
+	frequency = false;
+	station = 0;
+	botones = new double[12];
 	}
-	
-	
-
-    public void setState(boolean state) {
+   public void setState(boolean state) {
 		this.state = state;
 	}
     
-    public boolean getState() {
-        
-        return state;
-    }
+    
 
-
-
-	public void setFrequency(boolean frequency) {
-		this.frequency = frequency;
-	}
-
-	   public boolean getFrequency() {
-	       
-	        return frequency;
-	    }
-
-
-	public void setStation(double station) {
-		this.station = station;
-	}
-	
-	  public double getStation() {
-	       return station;
-	  }
-
-
+    /**
+     *Permite encender y apagar el radio
+     */
+    @Override
     public void toggle() {
-       if(getState() == true) {
+         if(getState() == true) {
     	   setState(false);
        }
        
@@ -62,13 +40,24 @@ public class RadioImp implements Radio {
     		   setState(true);
     	   }
        }
+       
     }
 
+    /**
+     *
+     * @return devuelve un valor true o false que indica el estado de la radio (Encendido/Apagado)
+     */
+    @Override
+    public boolean getState() {
+      return state;
+    }
 
-
+    /**
+     * Permite cambiar la frecuencia de la radio
+     */
+    @Override
     public void changeFrequency() {
-        
-    	if(getFrequency() == true) {
+        if(getFrequency() == true) {
      	   setFrequency(false);
      	   setStation(530);
         }
@@ -79,12 +68,15 @@ public class RadioImp implements Radio {
      		   setStation(87.9);
      	   }
         }
-     }
-    	
+        
+    }
 
+    /**
+     * Permite cambiar la estacion de la radio
+     */
     @Override
     public void changeStation() {
-     
+        
     	if(getStation() == 0) {
     		if (getFrequency() == true) {
     			setStation(87.9);
@@ -95,24 +87,54 @@ public class RadioImp implements Radio {
     	}
     	
     	if (getFrequency() == true) {
+    		if (up== true) {
     		if (getStation() == 107.9) {
     			setStation(87.9);
     		}
     		else {
     			setStation(getStation()+0.2);
     		}
+    		
+    		}
+    		
+    		if (up == false) {
+        		if (getStation() == 87.9) {
+        			setStation(107.9);
+        		}
+        		else {
+        			setStation(getStation()-0.2);
+        		}
+        		
+        		}
+    		
     	}
     	
     	if (getFrequency() == false) {
+    		if (up == true) {
     		if (getStation() == 1610) {
     			setStation(530);
     		}
     		else {
     			setStation(getStation()+10);
     		}
+    		}
+    		
+    		if (up == false) {
+        		if (getStation() == 530) {
+        			setStation(1610);
+        		}
+        		else {
+        			setStation(getStation()+-0);
+        		}
+        		}
+    		
     	}
     	
     }
+    
+    /**
+     * Permite guardar una estacion en un boton
+     */
 
     public void saveStation(int numButton) {
     	if ((numButton < 13) && (numButton >= 0)) {
@@ -123,7 +145,10 @@ public class RadioImp implements Radio {
     	}
     }
 
-    
+   /** @param numButton  Cambia a la estacion guardada en un boton 
+    * 
+    *  
+    */
     public void changeStationButton(int numButton) {
         
     	if ((numButton < 13) && (numButton >= 0)) {
@@ -131,8 +156,39 @@ public class RadioImp implements Radio {
     	}
     	else {
     		System.out.println("error");
-    	}
+    	}  
+    }
+
+    /**
+     *
+     * @return devuelve un valor true o false que indica la frecuencia actual 
+     */
+    @Override
+    public boolean getFrequency() {
+       
+       return frequency;
     }
     
+    public void setFrequency(boolean frequency) {
+		this.frequency = frequency;
+	}
+
+   
+   
+
+    /**
+     *
+     * @return devuelve la estacion actual de la radio
+     */
+    @Override
+    public double getStation() {
+       return station;
+    }
+    public void setStation(double station) {
+		this.station = station;
+	}
+
+   
     
 }
+
